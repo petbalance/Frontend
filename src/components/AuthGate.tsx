@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useAuth } from "../state/auth";
 import { getApiBase, setApiBase } from "../api/client";
 import { Button, Field, Notice } from "./ui";
+import { Icon } from "./Icon";
+import "../styles/welcome.css";
 
 export function AuthGate() {
   const { login, register } = useAuth();
@@ -30,26 +32,32 @@ export function AuthGate() {
   }
 
   return (
-    <div className="auth-wrap">
-      <form className="auth-card stack" style={{ gap: "var(--sp-4)" }} onSubmit={submit}>
-        <div className="row" style={{ gap: "var(--sp-2)" }}>
-          <span
-            aria-hidden
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: 9,
-              background: "var(--brand)",
-              color: "#fff",
-              display: "grid",
-              placeItems: "center",
-              fontSize: 16,
-            }}
-          >
-            🐾
-          </span>
-          <strong style={{ fontSize: 16, letterSpacing: "-0.02em" }}>우애영</strong>
+    <div className="auth-wrap welcome">
+      <div className="welcome-layout">
+      <section className="welcome-story" aria-labelledby="welcome-title">
+        <div className="welcome-brand"><span><Icon name="paw" size={26} /></span>우애영</div>
+        <div className="welcome-intro">
+          <p className="welcome-eyebrow">반려동물을 위한 매일의 영양 기록</p>
+          <h1 id="welcome-title">잘 먹는 하루,<br /><em>더 오래 함께.</em></h1>
+          <p className="welcome-description">사료부터 간식, 영양제까지.<br />우리 아이가 먹는 하루를 한곳에서 살펴보세요.</p>
         </div>
+        <div className="welcome-overview">
+          <div className="welcome-overview-heading"><Icon name="bowl" size={24} /><span>하루의 식단을 한눈에</span></div>
+          <div className="welcome-foods"><span>사료</span><span aria-hidden="true">+</span><span>간식</span><span aria-hidden="true">+</span><span>영양제</span></div>
+          <p>따로 먹는 제품도, 영양은 함께 살펴봐야 하니까.</p>
+        </div>
+        <ol className="welcome-steps" aria-label="우애영 사용 흐름">
+          <li><span>01</span><div><strong>우리 아이 프로필</strong><p>아이의 정보를 담고</p></div></li>
+          <li><span>02</span><div><strong>하루 급여조합</strong><p>먹는 제품을 모아</p></div></li>
+          <li><span>03</span><div><strong>영양소 분석</strong><p>식단을 살펴보세요</p></div></li>
+        </ol>
+      </section>
+      <form className="auth-card stack welcome-form" onSubmit={submit}>
+        <header className="welcome-form-heading">
+          <p className="welcome-eyebrow">우리 아이를 알아가는 시간</p>
+          <h2>{mode === "login" ? "다시 만나 반가워요" : "첫 기록을 시작해볼까요?"}</h2>
+          <p>{mode === "login" ? "로그인하고 우리 아이의 식단을 이어서 관리하세요." : "계정을 만들고 우리 아이의 하루 식단을 모아보세요."}</p>
+        </header>
 
         <div className="chip-toggle" style={{ alignSelf: "flex-start" }}>
           <button type="button" aria-pressed={mode === "login"} onClick={() => setMode("login")}>
@@ -66,13 +74,14 @@ export function AuthGate() {
 
         {mode === "register" && (
           <Field label="표시 이름 (선택)">
-            <input className="input" value={name} onChange={(e) => setName(e.target.value)} />
+            <input className="input" aria-label="표시 이름 (선택)" value={name} onChange={(e) => setName(e.target.value)} />
           </Field>
         )}
         <Field label="이메일">
           <input
             className="input"
             type="email"
+            aria-label="이메일"
             autoComplete="email"
             required
             value={email}
@@ -83,6 +92,7 @@ export function AuthGate() {
           <input
             className="input"
             type="password"
+            aria-label="비밀번호 (8자 이상)"
             autoComplete={mode === "login" ? "current-password" : "new-password"}
             required
             minLength={8}
@@ -110,6 +120,7 @@ export function AuthGate() {
             <input
               className="input"
               placeholder="예: https://wooaeyoung.example.com"
+              aria-label="API 서버 URL (비우면 이 앱 내장 서버)"
               value={apiBase}
               onChange={(e) => setApiBaseInput(e.target.value)}
             />
@@ -120,6 +131,7 @@ export function AuthGate() {
           계정으로 접속합니다.
         </p>
       </form>
+      </div>
     </div>
   );
 }
