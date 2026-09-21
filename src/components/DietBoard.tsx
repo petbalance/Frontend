@@ -109,15 +109,15 @@ export function DietBoard({ mode = "diet", onAdd }: { mode?: "diet" | "analysis"
       )}
 
       {/* 먹이는 제품 + 급여량 입력 */}
-      {mode === "diet" && <Card className="card-pad">
-        <div className="row spread" style={{ marginBottom: 12 }}>
+      {mode === "diet" && <Card className="card-pad feeding-editor">
+        <div className="row spread feeding-editor-header" style={{ marginBottom: 12 }}>
           <div>
             <div className="section-title">먹이는 제품</div>
             <div className="section-sub">
               지금 급여 중인 사료·간식·영양제와 하루에 주는 양(g)을 입력하세요.
             </div>
           </div>
-          <div className="row" style={{ gap: 6 }}>
+          <div className="row feeding-picker" style={{ gap: 6 }}>
             <select
               className="input"
               style={{ width: 220 }}
