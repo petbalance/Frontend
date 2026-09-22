@@ -80,7 +80,7 @@ export function DietBoard({ mode = "diet", onAdd }: { mode?: "diet" | "analysis"
       {/* 요약 배너 */}
       {mode === "analysis" && feeding.length > 0 && s.length > 0 && !analysis.loading && !analysis.error && (
         <Card
-          className="card-pad"
+          className="card-pad analysis-summary"
           style={{
             background:
               warns.length > 0
@@ -226,7 +226,7 @@ export function DietBoard({ mode = "diet", onAdd }: { mode?: "diet" | "analysis"
       {/* 영양소 현황 */}
       {mode === "analysis" && feeding.length > 0 && !analysis.loading && !analysis.error && <>
       {s.length > 0 && (
-        <Card className="card-pad">
+        <Card className="card-pad analysis-nutrients">
           <div className="section-title">영양소 현황</div>
           <div className="section-sub" style={{ marginBottom: 10 }}>
             하루 급여량 기준으로 계산한 성분별 총량과 참고 범위입니다.
@@ -236,7 +236,7 @@ export function DietBoard({ mode = "diet", onAdd }: { mode?: "diet" | "analysis"
             const axisMax = Math.max(r.total_mg, r.demo_max_mg, 1e-9) * 1.15;
             const w = (v: number) => Math.min(100, (v / axisMax) * 100) + "%";
             return (
-              <div key={r.nutrient} style={{ padding: "9px 0", borderBottom: "1px solid var(--border)" }}>
+              <div key={r.nutrient} className="analysis-nutrient-row" style={{ padding: "9px 0", borderBottom: "1px solid var(--border)" }}>
                 <div className="row" style={{ gap: 8 }}>
                   <b style={{ fontSize: 13 }}>{r.nutrient}</b>
                   <StatusBadge status={r.status} />

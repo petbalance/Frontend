@@ -102,3 +102,22 @@
   .feeding-editor > .btn { width: 100%; border-style: dashed; color: var(--brand-strong); font-weight: 600; }
   .feeding-editor > .empty { margin-block: 20px; padding: 32px 20px; border: 1px dashed var(--border-strong); border-radius: 16px; background: var(--surface-2); color: var(--text-secondary); line-height: 1.8; }
 }
+
+/* Analysis: make the current diet signal and nutrient scan readable at a glance. */
+@media screen {
+  .analysis-summary { position: relative; overflow: hidden; padding: 22px 20px !important; box-shadow: none; }
+  .analysis-summary::after { content: ""; position: absolute; width: 120px; height: 120px; right: -44px; top: -58px; border: 18px solid color-mix(in srgb, var(--brand) 17%, transparent); border-radius: 50%; pointer-events: none; }
+  .analysis-summary > div:first-child { max-width: 24ch; font-size: 18px !important; line-height: 1.4; }
+  .analysis-summary .section-sub { position: relative; max-width: 37ch; margin-top: 8px !important; color: var(--text-secondary); }
+  .analysis-nutrients { padding: 20px !important; }
+  .analysis-nutrients > .section-title { font-size: 19px; letter-spacing: -.035em; }
+  .analysis-nutrients > .section-sub { margin-top: 5px; margin-bottom: 16px !important; }
+  .analysis-nutrient-row { padding: 14px 0 !important; }
+  .analysis-nutrient-row:last-child { border-bottom: 0 !important; padding-bottom: 2px !important; }
+  .analysis-nutrient-row > .row { align-items: center; gap: 7px !important; }
+  .analysis-nutrient-row > .row > b { font-size: 15px !important; }
+  .analysis-nutrient-row > .row > span:last-child { padding: 4px 8px; border-radius: 8px; background: var(--surface-2); color: var(--text-primary); }
+  .analysis-nutrient-row > div:nth-child(2) { height: 10px !important; margin-top: 9px !important; border-radius: 999px !important; }
+  .analysis-nutrient-row > div:nth-child(2) > span { border-radius: 999px !important; }
+  .analysis-nutrient-row .section-sub { margin-top: 6px !important; font-size: 11px !important; }
+}
