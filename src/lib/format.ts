@@ -4,7 +4,7 @@ export const won = (n: number) =>
 export function mg(n: number, digits = 3): string {
   if (!isFinite(n)) return "—";
   if (n === 0) return "0";
-  if (n < 0.001) return n.toExponential(2);
+  if (Math.abs(n) < 0.001) return n.toExponential(2);
   return n.toLocaleString("ko-KR", {
     minimumFractionDigits: 0,
     maximumFractionDigits: digits,

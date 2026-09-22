@@ -1,6 +1,6 @@
-# 우애영 Frontend
+# petbalance Frontend
 
-React + TypeScript + Vite 프런트엔드입니다. 기존 WooAeyoung/backend 저장소의
+React + TypeScript + Vite 프런트엔드입니다. 기존 PetBalance/backend 저장소의
 `frontend/`를 기준으로 분리했습니다.
 
 ## 개발과 빌드
@@ -18,7 +18,7 @@ npm run build
 
 현재 운영 프로젝트는 Vercel `petbalance-ai`이며 FastAPI와 프런트엔드를
 함께 배포합니다. 정적 프런트엔드만으로 기존 운영 프로젝트를 덮어쓰면
-API가 사라지므로, 배포 시 WooAeyoung/backend의 기존 서버·데이터·Vercel
+API가 사라지므로, 배포 시 PetBalance/backend의 기존 서버·데이터·Vercel
 설정을 유지하고 이 저장소의 소스를 배포 디렉터리의 `frontend/`에 넣으세요.
 Vercel 프로젝트의 기존 환경변수를 그대로 사용합니다.
 

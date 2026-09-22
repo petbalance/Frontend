@@ -7,6 +7,8 @@ import { HandoffImport } from "./HandoffImport";
 import { ProfilePanel } from "./ProfilePanel";
 import { ProductAddPanel } from "./ProductAddPanel";
 import { Notice } from "./ui";
+import { DietComparison } from "./DietComparison";
+import { CostPanel } from "./CostPanel";
 
 type View = "profile" | "diet" | "analysis" | "products";
 const NAV: { id: View; label: string; title: string; icon: IconName }[] = [
@@ -15,10 +17,10 @@ const NAV: { id: View; label: string; title: string; icon: IconName }[] = [
   { id: "analysis", label: "영양소 분석", title: "영양소 분석", icon: "list" },
   { id: "products", label: "제품 추가", title: "제품 추가", icon: "plus" },
 ];
-const wooaeyoung = (window as unknown as { wooaeyoung?: {
+const petbalance = (window as unknown as { petbalance?: {
   isElectron?: boolean; platform?: string;
   win?: { minimize(): void; toggleMaximize(): void; close(): void };
-} }).wooaeyoung;
+} }).petbalance;
 
 export function AppShell() {
   const [view, setView] = useState<View>("diet");
@@ -28,13 +30,13 @@ export function AppShell() {
   const current = NAV.find((item) => item.id === view)!;
   return (
     <div className="appwin">
-      <div className={"titlebar" + (wooaeyoung?.platform === "darwin" ? " mac" : "")}>
-        <span className="tb-brand"><span className="tb-logo" aria-hidden><Icon name="paw" size={12} /></span>우애영</span>
+      <div className={"titlebar" + (petbalance?.platform === "darwin" ? " mac" : "")}>
+        <span className="tb-brand"><span className="tb-logo" aria-hidden><Icon name="paw" size={12} /></span>petbalance</span>
         <span className="tb-spacer" />
-        {wooaeyoung?.isElectron && wooaeyoung.platform !== "darwin" && <div className="win-btns no-print">
-          <button aria-label="최소화" onClick={() => wooaeyoung.win?.minimize()}>─</button>
-          <button aria-label="최대화" onClick={() => wooaeyoung.win?.toggleMaximize()}>▢</button>
-          <button className="close" aria-label="닫기" onClick={() => wooaeyoung.win?.close()}>✕</button>
+        {petbalance?.isElectron && petbalance.platform !== "darwin" && <div className="win-btns no-print">
+          <button aria-label="최소화" onClick={() => petbalance.win?.minimize()}>─</button>
+          <button aria-label="최대화" onClick={() => petbalance.win?.toggleMaximize()}>▢</button>
+          <button className="close" aria-label="닫기" onClick={() => petbalance.win?.close()}>✕</button>
         </div>}
       </div>
       <div className="appbody">
@@ -48,7 +50,7 @@ export function AppShell() {
             {state.loadError && <Notice tone="warn">제품 정보를 불러오지 못했습니다: {state.loadError}</Notice>}
             {view === "profile" && <div className="stack"><HandoffImport /><ProfilePanel /><button className="btn btn-primary" onClick={() => setView("diet")}>급여조합 설정하기</button><button className="btn btn-ghost" onClick={() => logout()}>로그아웃</button></div>}
             {view === "diet" && <div className="stack"><DietBoard mode="diet" onAdd={() => setView("products")} /><button className="btn btn-primary" onClick={() => setView("analysis")}>영양소 분석 보기</button></div>}
-            {view === "analysis" && <DietBoard mode="analysis" onAdd={() => setView("products")} />}
+            {view === "analysis" && <div className="stack"><DietComparison /><DietBoard mode="analysis" onAdd={() => setView("products")} /><CostPanel /></div>}
             {view === "products" && <ProductAddPanel />}
           </main>
         </section>

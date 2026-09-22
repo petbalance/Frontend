@@ -88,8 +88,8 @@ export function Onboarding({ onDone }: { onDone: () => void }) {
   function finish() {
     dispatch({ type: "profile", patch: { name: name.trim() || "우리 아이", weight, age, breed } });
     try {
-      localStorage.setItem("wooaeyoung-goals", JSON.stringify(goals));
-      localStorage.setItem("wooaeyoung-onboarded", "1");
+      localStorage.setItem("petbalance-goals", JSON.stringify(goals));
+      localStorage.setItem("petbalance-onboarded", "1");
     } catch {
       /* ignore */
     }
@@ -1102,7 +1102,7 @@ function MyScreen({ onOrders }: { onOrders: () => void }) {
   const [notif, setNotif] = useState(true);
   const [theme, setTheme] = useState(() => {
     try {
-      return localStorage.getItem("wooaeyoung-theme") || "system";
+      return localStorage.getItem("petbalance-theme") || "system";
     } catch {
       return "system";
     }
@@ -1113,7 +1113,7 @@ function MyScreen({ onOrders }: { onOrders: () => void }) {
     if (t === "system") r.removeAttribute("data-theme");
     else r.setAttribute("data-theme", t);
     try {
-      localStorage.setItem("wooaeyoung-theme", t);
+      localStorage.setItem("petbalance-theme", t);
     } catch {
       /* ignore */
     }
@@ -1196,7 +1196,7 @@ function MyScreen({ onOrders }: { onOrders: () => void }) {
       </div>
 
       <div className="c-card" style={{ background: "linear-gradient(160deg, var(--brand-wash), var(--surface-1))" }}>
-        <div className="c-hd">우애영 프리미엄</div>
+        <div className="c-hd">petbalance 프리미엄</div>
         <div className="c-sub">맞춤 급여 리포트, 무제한 영양 분석, 재구매 자동 배송 — 월 4,900원</div>
         <button className="bigbtn" style={{ marginTop: 12 }} disabled>
           구독 준비 중

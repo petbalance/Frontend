@@ -1,4 +1,4 @@
-package ai.wooaeyoung.app;
+package ai.petbalance.app;
 
 import com.getcapacitor.BridgeActivity;
 

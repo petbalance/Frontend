@@ -18,7 +18,8 @@ export function costRows(products: Product[], selections: Selection[]): CostRow[
   for (const p of products) {
     const sel = byId.get(p.product_id);
     if (!sel || !sel.active || sel.daily_amount_g <= 0) continue;
-    if (!p.monthly_price_krw || p.monthly_price_krw <= 0) continue;
+    if (!Number.isFinite(sel.daily_amount_g) || !Number.isFinite(p.monthly_price_krw) || !p.monthly_price_krw || p.monthly_price_krw <= 0) continue;
+    if (!Number.isFinite(p.serving_basis_g) || p.serving_basis_g <= 0) continue;
     const daily =
       (p.monthly_price_krw / 30) * (sel.daily_amount_g / p.serving_basis_g);
     rows.push({

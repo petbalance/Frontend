@@ -35,7 +35,7 @@ export function AuthGate() {
     <div className="auth-wrap welcome">
       <div className="welcome-layout">
       <section className="welcome-story" aria-labelledby="welcome-title">
-        <div className="welcome-brand"><span><Icon name="paw" size={26} /></span>우애영</div>
+        <div className="welcome-brand"><span><Icon name="paw" size={26} /></span>petbalance</div>
         <div className="welcome-intro">
           <p className="welcome-eyebrow">반려동물을 위한 매일의 영양 기록</p>
           <h1 id="welcome-title">잘 먹는 하루,<br /><em>더 오래 함께.</em></h1>
@@ -46,7 +46,7 @@ export function AuthGate() {
           <div className="welcome-foods"><span>사료</span><span aria-hidden="true">+</span><span>간식</span><span aria-hidden="true">+</span><span>영양제</span></div>
           <p>따로 먹는 제품도, 영양은 함께 살펴봐야 하니까.</p>
         </div>
-        <ol className="welcome-steps" aria-label="우애영 사용 흐름">
+        <ol className="welcome-steps" aria-label="petbalance 사용 흐름">
           <li><span>01</span><div><strong>우리 아이 프로필</strong><p>아이의 정보를 담고</p></div></li>
           <li><span>02</span><div><strong>하루 급여조합</strong><p>먹는 제품을 모아</p></div></li>
           <li><span>03</span><div><strong>영양소 분석</strong><p>식단을 살펴보세요</p></div></li>
@@ -119,7 +119,7 @@ export function AuthGate() {
           <Field label="API 서버 URL (비우면 이 앱 내장 서버)">
             <input
               className="input"
-              placeholder="예: https://wooaeyoung.example.com"
+              placeholder="예: https://petbalance.example.com"
               aria-label="API 서버 URL (비우면 이 앱 내장 서버)"
               value={apiBase}
               onChange={(e) => setApiBaseInput(e.target.value)}

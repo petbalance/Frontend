@@ -1,15 +1,17 @@
-/** Move device preferences before React reads them; never overwrite newer data. */
+/** Preserve current and legacy device preferences without overwriting newer data. */
 export function migrateBrandStorage(storage: Storage): void {
   for (const suffix of ['api-base', 'token', 'goals', 'onboarded', 'theme', 'cart', 'diet']) {
-    const oldKey = `pb-${suffix}`;
-    const newKey = `wooaeyoung-${suffix}`;
-    try {
-      const value = storage.getItem(oldKey);
-      if (value === null) continue;
-      if (storage.getItem(newKey) === null) storage.setItem(newKey, value);
-      storage.removeItem(oldKey);
-    } catch {
-      // Leave the original value intact if storage is full or unavailable.
+    const newKey = `petbalance-${suffix}`;
+    for (const prefix of ['wooaeyoung', 'pb']) {
+      const oldKey = `${prefix}-${suffix}`;
+      try {
+        const value = storage.getItem(oldKey);
+        if (value === null) continue;
+        if (storage.getItem(newKey) === null) storage.setItem(newKey, value);
+        storage.removeItem(oldKey);
+      } catch {
+        // Retain the original if storage is unavailable or full.
+      }
     }
   }
 }
